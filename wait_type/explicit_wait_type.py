@@ -25,4 +25,4 @@ class ExplicitWaitType():
 			print("Element did not appear on the web page")
 			print_stack()
 		return element
-		
+

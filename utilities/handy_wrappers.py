@@ -24,3 +24,4 @@ class HandyWrappers():
 		else:
 			print("Locator type " + locator_type + " not correct/supported")
 		return False
+

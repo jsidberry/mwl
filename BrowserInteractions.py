@@ -1,10 +1,11 @@
 from selenium import webdriver
+import os
 
 
 class BrowserInteractions:
 
 	def test(self):
-		base_url = "https://letskodeit.teachable.com/pages/practice"
+		base_url = "https://www.zillow.com"
 		driver = webdriver.Firefox()
 		
 		#Maximize browser
@@ -22,19 +23,25 @@ class BrowserInteractions:
 		
 		
 	def login(self):
-		base_url = "http://mdms-settings.charter.com:8300/operators/sign_in"
+		base_url = "https://www.zillow.com"
 		driver = webdriver.Firefox()
-		user_email_address = "c-juan.sidberry@charter.com"
-		user_password = "24652mdms"
+		# user_email_address = "c-juan.sidberry@charter.com"
+		user_email_address = os.environ['TEST_USERNAME']
+		user_password = os.environ['TEST_PSSWD']
+		# user_password = "24652mdms"
 		
 		#Open MDMS UI to login page
 		driver.get(base_url)
-		
-		email_element_id = driver.find_element_by_id("operator_email")
+		signin_link = driver.find_element_by_xpath("/html/body/div[1]/div[1]/div/header/nav/div[2]/ul[3]/li[1]/a").click()
+		# driver.signin_link.click()
+		email_element_id = driver.find_element_by_id("inputs-newEmail")
 		if email_element_id is not None:
 			print("Found email on login form.")
 		
+		# Close the browser
+		driver.quit()
 		
+
 ff = BrowserInteractions()
+# ff.test()
 ff.login()
-		
